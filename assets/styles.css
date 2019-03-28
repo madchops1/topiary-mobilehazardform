@@ -1,0 +1,91 @@
+body {
+    margin-bottom: 60px;
+}
+
+.overlay {
+    background: #fff;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 1;
+    text-align: center;
+}
+
+.banner {
+    background: #337ab7;
+    font-size: 10px;
+    padding: 5px;
+    color: #fff;
+    letter-spacing: 3px;
+}
+
+.logo {
+    width: 320px;
+    margin: 10px;
+}
+
+.overlay-logo {
+    width: 80%;
+    margin: 200px auto 20px auto; 
+    display: block;
+}
+
+.nav-tabs {
+    background: #74a1c7;
+    padding: 10px;
+}
+
+.nav-tabs>li>a {
+    background: #fff;
+    border-radius: 50px !important;
+    margin-right: 10px;
+    padding: 10px 16px;
+}
+
+.checkbox>label {
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    background: #337ab7;
+    padding: 10px;
+    width: 100%;
+    /*margin: 0px -10px;*/
+    -webkit-font-smoothing: none; /* Obvious */
+    -webkit-font-smoothing: subpixel-antialiased; /* This is what quite a few browers already do*/
+    -webkit-font-smoothing: antialiased; /* Even more than the one above */
+}
+
+.tab-content {
+    height: 50%;
+}
+
+.red {
+    color: red;
+}
+
+.btnNext {
+    float: right;
+    text-shadow: none;
+    width: 20%;
+}
+
+.btnPrevious {
+    float: left;
+    text-shadow: none;
+    width: 20%;
+}
+
+copyright {
+    font-size: 8px;
+    color: #fff;
+    line-height: 9px;
+    float: left;
+    width: 60%;
+    letter-spacing: 1px;
+    text-align: center;
+}
