@@ -1,11 +1,19 @@
 body {
-    margin-bottom: 60px;
+    margin-bottom: 54px;
+    background: #333;
+}
+
+.wrapper {
+    max-width: 768px;
+    margin: 0px auto;
+    background: #fff;
 }
 
 .overlay {
     background: #fff;
-    position: absolute;
+    position: fixed;
     width: 100%;
+    max-width: 768px;
     height: 100%;
     display: block;
     z-index: 1;
@@ -29,6 +37,7 @@ body {
     width: 80%;
     margin: 200px auto 20px auto; 
     display: block;
+    max-width: 320px;
 }
 
 .nav-tabs {
@@ -43,6 +52,14 @@ body {
     padding: 10px 16px;
 }
 
+.nav-tabs>li>a>span {
+    display: none;
+}
+
+.nav-tabs>li.active>a>span {
+    display: inline-block;
+}
+
 .checkbox>label {
     margin-right: 20px;
     margin-bottom: 20px;
@@ -54,6 +71,7 @@ footer {
     background: #337ab7;
     padding: 10px;
     width: 100%;
+    max-width: 768px;
     /*margin: 0px -10px;*/
     -webkit-font-smoothing: none; /* Obvious */
     -webkit-font-smoothing: subpixel-antialiased; /* This is what quite a few browers already do*/
