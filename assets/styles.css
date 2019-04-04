@@ -98,12 +98,32 @@ footer {
     width: 20%;
 }
 
+.btnSave {
+    float: right;
+}
+
+.btnSubmit {
+    float: right;
+}
+
 copyright {
     font-size: 8px;
     color: #fff;
     line-height: 9px;
     float: left;
-    width: 60%;
     letter-spacing: 1px;
     text-align: center;
+    padding: 10px;
+}
+
+.error {
+    color: red;
+    font-size: 11px;
+}
+
+label>label.error {
+    position: absolute;
+    top: -15px;
+    left: -20px;
+    font-weight: bold;
 }

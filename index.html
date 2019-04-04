@@ -18,6 +18,8 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.js"></script>
+
         <!-- Custom Scripts -->
         <script src="assets/app.js"></script>
 
@@ -34,483 +36,484 @@
                 <a href=""><img src="assets/logo.png" class="logo"/></a>
             </header>
 
-            <!-- LOGIN SECTION-->
-            <div >
-
-            </div>
-
-            <!-- START PAGE -->
+            <!-- LOGIN SECTION
             <div>
 
             </div>
+            -->
+
+            <!-- START PAGE
+            <div>
+
+            </div>
+            -->
             
             <!-- 5 STEP FORM -->
-            <div class="section-form">
+            <form id="main-form" name="main-form" action="">
+                <div class="section-form">
 
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#info" data-step="1" aria-controls="info" role="tab" data-toggle="tab">1 <span>Reporter</span></a></li>
-                    <li role="presentation"><a href="#description" data-step="2" aria-controls="description" role="tab" data-toggle="tab">2 <span>Description</span></a></li>
-                    <li role="presentation"><a href="#persons" data-step="3" aria-controls="persons" role="tab" data-toggle="tab">3 <span>Persons</span></a></li>
-                    <li role="presentation"><a href="#details" data-step="4" aria-controls="details" role="tab" data-toggle="tab">4 <span>Details</span></a></li>
-                    <li role="presentation"><a href="#notesfiles" data-step="5" aria-controls="notesfiles" role="tab" data-toggle="tab">5 <span>Notes/Files</span></a></li>
-                </ul>
-        
-                <!-- Tab panes -->
-                <div class="tab-content">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#info" data-step="1" aria-controls="info" role="tab" data-toggle="tab">1 <span>Reporter</span></a></li>
+                        <li role="presentation"><a href="#description" data-step="2" aria-controls="description" role="tab" data-toggle="tab">2 <span>Description</span></a></li>
+                        <li role="presentation"><a href="#persons" data-step="3" aria-controls="persons" role="tab" data-toggle="tab">3 <span>Persons</span></a></li>
+                        <li role="presentation"><a href="#details" data-step="4" aria-controls="details" role="tab" data-toggle="tab">4 <span>Details</span></a></li>
+                        <li role="presentation"><a href="#notesfiles" data-step="5" aria-controls="notesfiles" role="tab" data-toggle="tab">5 <span>Notes/Files</span></a></li>
+                    </ul>
+            
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        
+                        <!-- Step One -->
+                        <div role="tabpanel" class="tab-pane active" id="info">
+                            <div class="container-fluid">
+
+                                <h3>Hazard Reporter (confidential)</h3>
+                                
+                                <div class="form-group">
+                                    <label for="badge_number">Badge Number</label>
+                                    <input type="text" class="form-control" name="badge_number" id="badge_number" placeholder="XXXXXXXXXX">
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">
+                                        Name<span class="red">*</span>
+                                        <div class="">
+                                            <label>
+                                                <input type="checkbox" name="decline" class="decline"> Decline To Provide
+                                            </label>
+                                        </div>
+                                    </label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="First Last">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email<span class="red">*</span></label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="youremail@gmail.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number/Extension</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="312-123-456 ext.123">
+                                </div>
+                                <div class="form-group">
+                                    <label for="company">Company</label>
+                                    <input type="text" class="form-control" id="company" name="company" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="department">Department</label>
+                                    <input type="text" class="form-control" id="department" name="department" placeholder="">
+                                </div>
+
+                                <h3>Call Taker</h3>
+
+                                <div class="form-group">
+                                    <label for="call_taker_name">Name/Initials</label>
+                                    <input type="text" class="form-control" id="call_taker_name" name="call_taker_name" placeholder="Jane Smith">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="call_taker_phone">Phone Numer/Extension</label>
+                                    <input type="text" class="form-control" id="call_taker_phone" name="call_taker_phone" placeholder="312-123-456 ext.123">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="call_taker_company">Company</label>
+                                    <input type="text" class="form-control" id="call_taker_company" name="call_taker_company" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="call_taker_department">Department</label>
+                                    <input type="text" class="form-control" id="call_taker_department" name="call_taker_department" placeholder="">
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="description">
+                            <div class="container-fluid">
+                                <h3>Hazard Description</h3>
+                                <div class="form-group">
+                                    <label for="description">Hazard Description<span class="red">*</span></label>
+                                    <textarea id="description" name="description" class="form-control" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="location">Location<span class="red">*</span></label>
+                                    <input type="text" class="form-control" id="location" name="location" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="date">Date<span class="red">*</span></label>
+                                    <input type="text" class="form-control" id="date" name="date" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="time">Time<span class="red">*</span></label>
+                                    <input type="text" class="form-control" id="time" name="time" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="what">What Could/Did Occur?</label>
+                                    <textarea id="what" class="form-control" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="what">Where There Injuries?<span class="red">*</span></label>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="injuries" id="injuries1" value="Yes">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="injuries" id="injuries2" value="No">
+                                            No
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="injuries" id="injuries3" value="Unknown">
+                                            Unkown
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="what">Was There Property Damage?<span class="red">*</span></label>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="property" id="property1" value="Yes">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="property" id="property2" value="No">
+                                            No
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="property" id="property3" value="Unknown">
+                                            Unkown
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="what">Were Any Airlines Involved?<span class="red">*</span></label>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="airlines" id="airlines1" value="Yes">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="airlines" id="airlines2" value="No">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">SSI</label>
+                                    <div class="checkbox">
+                                    <label>
+                                        <input id="sensitive_security_information" name="sensitive_security_information" type="checkbox" value="true">
+                                        Sensitive Security Information (Secure Sensitive Information (SSI) is anything that contains private information, typically, but not limited to airline, private company, or personal individual information that is not considered accessible via Freedom of Information Act (FOIA) requests.)
+                                    </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="persons">
+                            <div class="container-fluid">
+                                <h3>Involved Persons</h3>
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        No Involved Persons Added. Add someone below.
+                                    </div>
+
+                                    <div class="persons-list">
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="person_badge_number">Badge Number</label>
+                                        <input type="text" class="form-control" id="person_badge_number" name="person_badge_number" placeholder="XXXXXXXXXX">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="person_name">Name</label>
+                                        <input type="text" class="form-control" id="person_name" name="person_name" placeholder="First Last">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="person_email">Email</label>
+                                        <input type="email" class="form-control" id="person_email" name="person_email" placeholder="theiremail@gmail.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="person_phone">Phone Number/Extension</label>
+                                        <input type="text" class="form-control" id="person_phone" name="person_phone" placeholder="312-123-456 ext.123">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="person_company">Company</label>
+                                        <input type="text" class="form-control" id="person_company" name="person_company" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="person_department">Department</label>
+                                        <input type="text" class="form-control" id="person_department" name="person_department" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Involved</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input id="involved1" name="involved" type="radio" value="yes">
+                                                Yes
+                                            </label>
+                                            <label>
+                                                <input id="involved2" name="involved" type="radio" value="no">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Witness</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input id="witness1" name="witness" type="radio" value="yes">
+                                                Yes
+                                            </label>
+                                            <label>
+                                                <input id="witness2" name="witness" type="radio" value="no">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Contact</label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input id="contact1" name="contact" type="radio" value="yes">
+                                                Yes
+                                            </label>
+                                            <label>
+                                                <input id="contact2" name="contact" type="radio" value="no">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="person_notes">Notes</label>
+                                        <textarea id="person_notes" name="person_notes" class="form-control" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="" class="btn btn-default" disabled>Add Person</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="details">
+                            <div class="container-fluid">
+                                <h3>Hazard Details</h3>
+                                <div class="form-group">
+                                    <label for="factors">Explain Apparent Contributing Factors<span class="red">*</span></label>
+                                    <textarea id="factors" name="factors" class="form-control" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="human_error">Human Error<span class="red">*</span></label>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="human_error" id="human_error1" value="Yes">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="human_error" id="human_error2" value="No">
+                                            No
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="human_error" id="human_error3" value="Unknown">
+                                            Unkown
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mechanical_failure">Mechanical Failure<span class="red">*</span></label>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="mechanical_failure" id="mechanical_failure1" value="Yes">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="mechanical_failure" id="mechanical_failure2" value="No">
+                                            No
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="mechanical_failure" id="mechanical_failure3" value="Unknown">
+                                            Unkown
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="environment">Environment<span class="red">*</span></label>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="environment" id="environment1" value="Yes">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="environment" id="environment2" value="No">
+                                            No
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="environment" id="environment3" value="Unknown">
+                                            Unkown
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Weather Conditions<span class="red">*</span></label>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input class="require-one" id="clear" name="weather_conditions[]" type="checkbox" value="clear">
+                                            Clear
+                                        </label>
+                                        <label>
+                                            <input class="require-one" id="clouds" name="weather_conditions[]" type="checkbox" value="clouds">
+                                            Clouds
+                                        </label>
+                                        <label>
+                                            <input class="require-one" id="windy" name="weather_conditions[]" type="checkbox" value="windy">
+                                            Windy
+                                        </label>
+                                        <label>
+                                            <input class="require-one" id="dust" name="weather_conditions[]" type="checkbox" value="dust">
+                                            Dust
+                                        </label>
+                                        <label>
+                                            <input class="require-one" id="rain" name="weather_conditions[]" type="checkbox" value="rain">
+                                            Rain
+                                        </label>
+                                        <label>
+                                            <input class="require-one" id="snow" name="weather_conditions[]" type="checkbox" value="snow">
+                                            Snow
+                                        </label>
+                                        <label>
+                                            <input class="require-one" id="fog" name="weather_conditions[]" type="checkbox" value="fog">
+                                            Fog
+                                        </label>
+                                        <label>
+                                            <input class="require-one" id="weather_unkown" name="weather_conditions[]" type="checkbox" value="unkown">
+                                            Unkown
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Pavement Conditions<span class="red">*</span></label>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input id="dry" name="pavement_conditions[]" type="checkbox" value="dry">
+                                            Dry
+                                        </label>
+                                        <label>
+                                            <input id="ice" name="pavement_conditions[]" type="checkbox" value="ice">
+                                            Ice
+                                        </label>
+                                        <label>
+                                            <input id="water" name="pavement_conditions[]" type="checkbox" value="water">
+                                            Water
+                                        </label>
+                                        <label>
+                                            <input id="snow" name="pavement_conditions[]" type="checkbox" value="snow">
+                                            Snow
+                                        </label>
+                                        <label>
+                                            <input id="other" name="pavement_conditions[]" type="checkbox" value="other">
+                                            Other
+                                        </label>
+                                        <label>
+                                            <input id="pavement_unkown" name="pavement_conditions[]" type="checkbox" value="unkown">
+                                            Unkown
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pavement_condition">Describe Pavement Condition<span class="red">*</span></label>
+                                    <textarea id="pavement_condition_description" name="pavement_condition_description" class="form-control" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="other_relavent_info">Other Relavent Information</label>
+                                    <textarea id="other_relavent_info" name="other_relavent_info" class="form-control" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="notesfiles">
+                            <div class="container-fluid">
+                                <h3>Notes</h3>
+                                
+                                <div class="form-group">
+                                    <div>
+                                        No Notes Submitted.
+                                    </div>
+
+                                    <div class="notes-list">
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description">Add New Note (For Internal Viewing Only)</label>
+                                    <textarea id="description" name="notes" class="form-control" rows="3"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="" class="btn btn-default">Add Note</button>
+                                </div>
+
+                                <h3>Files</h3>
+
+                                <div class="form-group">
+                                    <div>
+                                        No Files Uploaded.
+                                    </div>
+
+                                    <div class="files-list">
+
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="filename">File Name/Label:</label>
+                                    <input type="text" class="form-control" id="filename" name="filename" placeholder="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="file">File:</label>
+                                    <input type="file" id="file" name="file">
+                                    <p class="help-block">Add key files like witness statements, authorization letters, etc.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <footer>
+                        <a class="btn btn-default btnPrevious">Back</a>
+                        <a class="btn btn-default btnNext">Next</a>
+                        <button type="" class="btn btn-default btnSave">Save</button>
+                        <button type="submit" class="btn btn-default btnSubmit">Submit</button>
+                        <div class="clearfix"></div>
+                        <copyright>
+                            By visiting our website, you accept the terms and conditions described in our terms of use and privacy statement. 
+                            © Copyright 2010 - 2019 Topiary Communications, Inc. All Rights Reserved.
+                        </copyright>
+                    </footer>
                     
-                    <!-- Step One -->
-                    <div role="tabpanel" class="tab-pane active" id="info">
-                        <div class="container-fluid">
-
-                            <h3>Hazard Reporter (confidential)</h3>
-                            
-                            <div class="form-group">
-                                <label for="badge_number">Badge Number</label>
-                                <input type="text" class="form-control" id="badge_number" placeholder="XXXXXXXXXX">
-                            </div>
-                            <div class="form-group">
-                                <label for="name">
-                                    Name
-                                    <div class="">
-                                        <label>
-                                            <input type="checkbox" name="decline" class="decline"> Decline To Provide
-                                        </label>
-                                    </div>
-                                </label>
-                                <input type="text" class="form-control" id="name" placeholder="First Last">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="youremail@gmail.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number/Extension</label>
-                                <input type="text" class="form-control" id="phone" placeholder="312-123-456 ext.123">
-                            </div>
-                            <div class="form-group">
-                                <label for="company">Company</label>
-                                <input type="text" class="form-control" id="company" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="department">Department</label>
-                                <input type="text" class="form-control" id="department" placeholder="">
-                            </div>
-
-                            <h3>Call Taker</h3>
-
-                            <div class="form-group">
-                                <label for="call_taker_name">Name/Initials</label>
-                                <input type="text" class="form-control" id="call_taker_name" placeholder="Jane Smith">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="call_taker_phone">Phone Numer/Extension</label>
-                                <input type="text" class="form-control" id="call_taker_phone" placeholder="312-123-456 ext.123">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="call_taker_company">Company</label>
-                                <input type="text" class="form-control" id="call_taker_company" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="call_taker_department">Department</label>
-                                <input type="text" class="form-control" id="call_taker_department" placeholder="">
-                            </div>
-                            
-                        </div>
-                    </div>
-
-                    <div role="tabpanel" class="tab-pane" id="description">
-                        <div class="container-fluid">
-                            <h3>Hazard Description</h3>
-                            <div class="form-group">
-                                <label for="description">Hazard Description<span class="red">*</span></label>
-                                <textarea id="description" class="form-control" rows="3"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="location">Location<span class="red">*</span></label>
-                                <input type="text" class="form-control" id="location" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="date">Date<span class="red">*</span></label>
-                                <input type="text" class="form-control" id="date" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="time">Time<span class="red">*</span></label>
-                                <input type="text" class="form-control" id="time" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="what">What Could/Did Occur?</label>
-                                <textarea id="what" class="form-control" rows="3"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="what">Where There Injuries?<span class="red">*</span></label>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="injuries" id="injuries1" value="Yes">
-                                        Yes
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="injuries" id="injuries2" value="No">
-                                        No
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="injuries" id="injuries3" value="Unknown">
-                                        Unkown
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="what">Was There Property Damage?<span class="red">*</span></label>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="property" id="property1" value="Yes">
-                                        Yes
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="property" id="property2" value="No">
-                                        No
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="property" id="property3" value="Unknown">
-                                        Unkown
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="what">Were Any Airlines Involved?<span class="red">*</span></label>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="airlines" id="airlines1" value="Yes">
-                                        Yes
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="airlines" id="airlines2" value="No">
-                                        No
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="">SSI</label>
-                                <div class="checkbox">
-                                <label>
-                                    <input id="sensitive_security_information" type="checkbox" value="true">
-                                    Sensitive Security Information (Secure Sensitive Information (SSI) is anything that contains private information, typically, but not limited to airline, private company, or personal individual information that is not considered accessible via Freedom of Information Act (FOIA) requests.)
-                                </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div role="tabpanel" class="tab-pane" id="persons">
-                        <div class="container-fluid">
-                            <h3>Involved Persons</h3>
-                            <div class="form-group">
-                                <div class="form-group">
-                                    No Involved Persons Added. Add someone below.
-                                </div>
-
-                                <div class="persons-list">
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="person_badge_number">Badge Number</label>
-                                    <input type="text" class="form-control" id="person_badge_number" placeholder="XXXXXXXXXX">
-                                </div>
-                                <div class="form-group">
-                                    <label for="person_name">Name</label>
-                                    <input type="text" class="form-control" id="person_name" placeholder="First Last">
-                                </div>
-                                <div class="form-group">
-                                    <label for="person_email">Email</label>
-                                    <input type="email" class="form-control" id="person_email" placeholder="theiremail@gmail.com">
-                                </div>
-                                <div class="form-group">
-                                    <label for="person_phone">Phone Number/Extension</label>
-                                    <input type="text" class="form-control" id="person_phone" placeholder="312-123-456 ext.123">
-                                </div>
-                                <div class="form-group">
-                                    <label for="person_company">Company</label>
-                                    <input type="text" class="form-control" id="person_company" placeholder="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="person_department">Department</label>
-                                    <input type="text" class="form-control" id="person_department" placeholder="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Involved</label>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input id="involved1" name="involved" type="radio" value="yes">
-                                            Yes
-                                        </label>
-                                        <label>
-                                            <input id="involved2" name="involved" type="radio" value="no">
-                                            No
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Witness</label>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input id="witness1" name="witness" type="radio" value="yes">
-                                            Yes
-                                        </label>
-                                        <label>
-                                            <input id="witness2" name="witness" type="radio" value="no">
-                                            No
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Contact</label>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input id="contact1" name="contact" type="radio" value="yes">
-                                            Yes
-                                        </label>
-                                        <label>
-                                            <input id="contact2" name="contact" type="radio" value="no">
-                                            No
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="person_notes">Notes</label>
-                                    <textarea id="person_notes" class="form-control" rows="3"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-default" disabled>Add Person</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div role="tabpanel" class="tab-pane" id="details">
-                        <div class="container-fluid">
-                            <h3>Hazard Details</h3>
-                            <div class="form-group">
-                                <label for="factors">Explain Apparent Contributing Factors<span class="red">*</span></label>
-                                <textarea id="factors" class="form-control" rows="3"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="human_error">Human Error<span class="red">*</span></label>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="human_error" id="human_error1" value="Yes">
-                                        Yes
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="human_error" id="human_error2" value="No">
-                                        No
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="human_error" id="human_error3" value="Unknown">
-                                        Unkown
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="mechanical_failure">Human Error<span class="red">*</span></label>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="mechanical_failure" id="mechanical_failure1" value="Yes">
-                                        Yes
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="mechanical_failure" id="mechanical_failure2" value="No">
-                                        No
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="mechanical_failure" id="mechanical_failure3" value="Unknown">
-                                        Unkown
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="environment">Environment<span class="red">*</span></label>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="environment" id="environment1" value="Yes">
-                                        Yes
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="environment" id="environment2" value="No">
-                                        No
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="environment" id="environment3" value="Unknown">
-                                        Unkown
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Weather Conditions<span class="red">*</span></label>
-                                <div class="checkbox">
-                                    <label>
-                                        <input id="clear" type="checkbox" value="clear">
-                                        Clear
-                                    </label>
-                                    <label>
-                                        <input id="clear" type="checkbox" value="clouds">
-                                        Clouds
-                                    </label>
-                                    <label>
-                                        <input id="windy" type="checkbox" value="windy">
-                                        Windy
-                                    </label>
-                                    <label>
-                                        <input id="dust" type="checkbox" value="dust">
-                                        Dust
-                                    </label>
-                                    <label>
-                                        <input id="rain" type="checkbox" value="rain">
-                                        Rain
-                                    </label>
-                                    <label>
-                                        <input id="clear" type="checkbox" value="snow">
-                                        Snow
-                                    </label>
-                                    <label>
-                                        <input id="fog" type="checkbox" value="fog">
-                                        Fog
-                                    </label>
-                                    <label>
-                                        <input id="unkown" type="checkbox" value="unkown">
-                                        Unkown
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Pavement Conditions<span class="red">*</span></label>
-                                <div class="checkbox">
-                                <label>
-                                    <input id="dry" type="checkbox" value="dry">
-                                    Dry
-                                </label>
-                                <label>
-                                    <input id="ice" type="checkbox" value="ice">
-                                    Ice
-                                </label>
-                                <label>
-                                    <input id="water" type="checkbox" value="water">
-                                    Water
-                                </label>
-                                <label>
-                                    <input id="snow" type="checkbox" value="snow">
-                                    Snow
-                                </label>
-                                <label>
-                                    <input id="other" type="checkbox" value="other">
-                                    Other
-                                </label>
-                                <label>
-                                    <input id="unkown" type="checkbox" value="unkown">
-                                    Unkown
-                                </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="pavement_condition">Describe Pavement Condition<span class="red">*</span></label>
-                                <textarea id="pavement_condition" class="form-control" rows="3"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="other_relavent_info">Other Relavent Information</label>
-                                <textarea id="other_relavent_info" class="form-control" rows="3"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div role="tabpanel" class="tab-pane" id="notesfiles">
-                        <div class="container-fluid">
-                            <h3>Notes</h3>
-                            
-                            <div class="form-group">
-                                <div>
-                                    No Notes Submitted.
-                                </div>
-
-                                <div class="notes-list">
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="description">Add New Note (For Internal Viewing Only)</label>
-                                <textarea id="description" class="form-control" rows="3"></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-default">Add Note</button>
-                            </div>
-
-                            <h3>Files</h3>
-
-                            <div class="form-group">
-                                <div>
-                                    No Files Uploaded.
-                                </div>
-
-                                <div class="files-list">
-
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="filename">File Name/Label:</label>
-                                <input type="text" class="form-control" id="filename" placeholder="">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="file">File:</label>
-                                <input type="file" id="file">
-                                <p class="help-block">Add key files like witness statements, authorization letters, etc.</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-
-                <footer>
-                    <a class="btn btn-default btnPrevious">Back</a>
-
-                    <copyright>
-                        By visiting our website, you accept the terms and conditions described in our terms of use and privacy statement. 
-                        © Copyright 2010 - 2019 Topiary Communications, Inc. All Rights Reserved.
-                    </copyright>
-                    
-                    <a class="btn btn-default btnNext">Next</a>
-                    <button type="submit" class="btn btn-default btnSubmit">Submit</button>
-                    <div class="clearfix"></div>
-
-                </footer>
-                
-                
-            </div>
+            </form>
         </div>
     </body>
 </html>

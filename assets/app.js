@@ -12,11 +12,11 @@ $(function() {
                 value: false
             },
             name: {
-                required: false,
+                required: true,
                 value: ''
             },
             email: {
-                required: false,
+                required: true,
                 value: ''
             },
             phone: {
@@ -150,12 +150,15 @@ $(function() {
 
         // Setup State by clicking once
         $('.nav-tabs > .active').find('a').trigger('click');
-    }, 1);
+    }, 900);
 
     // Overlay fadeout
     var t = setTimeout(function() {
         $('.overlay').fadeOut();
     }, 1000);
+
+    
+
 
     // App functions
     declineDisable = function(toggle) {
@@ -199,13 +202,57 @@ $(function() {
         }
     });
 
+    // Weather Checkboxes
+    
+
+    // Submission
+    //var validator = $("#main-form").validate();
+    var validator = $("form[name='main-form']").validate({
+        // Specify validation rules
+        rules: {
+          // The key name on the left side is the name attribute
+          // of an input field. Validation rules are defined
+          // on the right side
+          name: "required",
+          email: "required",
+          description: "required",
+          location: "required", 
+          date: "required",
+          time: "required",
+          injuries: "required",
+          property: "required",
+          airlines: "required",
+          factors: "required",
+          human_error: "required",
+          mechanical_failure: "required",
+          environment: "required",
+          'weather_conditions[]':  { required: true },
+          'pavement_conditions[]':  { required: true },
+          pavement_condition_description: "required"
+        },
+        // Specify validation error messages
+        messages: {
+            badge_number: "Please enter your firstname"
+        },
+        // Make sure the form is submitted to the destination defined
+        // in the "action" attribute of the form when valid
+        submitHandler: function(form) {
+          
+            form.submit();
+        }
+    });
+
     // Nav events
     $(".nav-tabs>li>a").click(function(e) {
         var step = $(e.target).attr('data-step');
         console.log('Leaving', currentStep);
         console.log('Navigating to', step);
-        if(validate(currentStep)) {
-            console.log('valid');
+
+        var valid = validator.form();
+        console.log('FORM ALPHA',valid);
+        
+        if(valid) {
+            //console.log('valid');
             currentStep = step;
             if(currentStep == 1) {
                 $('.btnPrevious').hide();
@@ -222,8 +269,8 @@ $(function() {
         } else {
             console.log('invalid');
             e.preventDefault();
+            return false;
         }
-        //currentStep = step;
     });
 
     // Next and Previous Events
@@ -232,7 +279,8 @@ $(function() {
             return false;
         }
         $('.btnPrevious').show();
-        if(validate(currentStep)) {
+        console.log('FORM BETA',validator.form());
+        if(validator.form()) {
             $('.nav-tabs > .active').next('li').find('a').trigger('click');
         }
     });
@@ -241,17 +289,9 @@ $(function() {
         if(currentStep == 1) {
             return false;
         }
-        if(validate(currentStep)) {
-            $('.nav-tabs > .active').prev('li').find('a').trigger('click');
-        }
+        $('.nav-tabs > .active').prev('li').find('a').trigger('click');
     });
 
-    // Submission
-    $(".submit").click(function() {
-
-        // validate
-
-    })
 });
 
 
