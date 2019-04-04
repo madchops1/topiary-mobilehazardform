@@ -100,6 +100,14 @@ footer {
     width: 20%;
 }
 
+.datepicker-wrapper {
+    position: relative;
+}
+
+.timepicker-wrapper {
+    position: relative;
+}
+
 .btnSave {
     float: right;
 }
@@ -128,4 +136,42 @@ label>label.error {
     top: -15px;
     left: -20px;
     font-weight: bold;
+}
+
+.persons-list {
+    margin-bottom: 10px;
+    display: block;
+}
+
+/*
+.persons-list > .aperson {
+    background: #ccc;
+    margin: 10px;
+    border: 1px solid #000;
+}
+*/
+
+.aperson {
+    border-bottom: 1px solid #000;
+}
+
+.person, .aperson {
+    margin-top: 10px;
+}
+
+/*
+.persons-list > .person >.form-group > label {
+    display: none !important;
+    margin: 0px;
+}
+
+.persons-list > .person > .form-group {
+    font-size: 10px;
+    margin: 0px;
+}
+*/
+
+.btnEditPerson {
+    margin-right: 10px;
+    float: right;
 }

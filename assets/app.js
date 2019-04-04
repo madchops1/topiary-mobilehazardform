@@ -4,6 +4,7 @@ $(function() {
 
     // the current step by default
     var retrievedObject = false;
+    var personCounter = 0;
 
     // init
     var t = setTimeout(function() {
@@ -34,6 +35,15 @@ $(function() {
             // set current step
             $('.nav-tabs > li').eq(currentStep-1).find('a').trigger('click');
             
+
+            // Datepicker
+            $('#date').datetimepicker({
+                format: 'MM/DD/YYYY'
+            });
+            $('#time').datetimepicker({
+                format: "LT"
+            });
+            
         }
         
     }, 1000);
@@ -46,6 +56,25 @@ $(function() {
         $("#company").prop('disabled', toggle);
         $("#department").prop('disabled', toggle);
     };
+
+    populatePersons = function() {
+        var formData = $("form[name='main-form']").serializeArray();
+        console.log('populatePersons()', formData);
+        //...
+    }
+
+    clearPersons = function() {
+        $("input[name='person_badge_number']").val('');        
+        $("input[name='person_name']").val('');
+        $("input[name='person_email']").val('');
+        $("input[name='person_phone']").val('');
+        $("input[name='person_company']").val('');
+        $("input[name='person_department']").val('');
+        $("input[name='person_involved']").val('');
+        $("input[name='person_witness']").val('');
+        $("input[name='person_contact']").val('');
+        $("input[name='person_notes']").val('');
+    }
 
     // EVENTS
 
@@ -136,21 +165,75 @@ $(function() {
     });
 
     $('.btnSave').click(function(e) {
-        //var testObject = { 'one': 1, 'two': 2, 'three': 3 };
-
-        //var formData = new FormData($("form[name='main-form']"));
-        //var formData = $("form[name='main-form']").serializeArray().reduce(function(obj, item) {
-        //    obj[item.name] = item.value;
-        //    return obj;
-        //}, {});
         var formData = $("form[name='main-form']").serialize();
         formData += "&step=" + currentStep;
-        //console.log('FORM DATA', formData);
         localStorage.setItem('topiaryFormData', JSON.stringify(formData));
-
         alert('You data has been saved for later.');
         e.preventDefault();
     });
+
+    $('.btnClear').click(function(e) {
+        localStorage.setItem('topiaryFormData', null);
+        e.preventDefault();
+    })
+
+    $('.btnAddPerson').click(function(e) {
+        e.preventDefault();
+
+        $(".no-persons").hide();
+        
+        //$('.pers')
+        
+        var ele = $('.person').clone(true);
+        
+        // update name unique attr
+        $(ele).find('*[name]').each(function(item) {
+            console.log('NAME ATTR', item);
+            var name = $(ele).find('*[name]').eq(item).attr('name');
+            name = name + personCounter;
+            $(ele).find('*[name]').eq(item).prop('name',name);
+            $(ele).removeClass('person').addClass('aperson').prop('id','collapsePerson'+personCounter).attr('data-index', personCounter);
+            console.log(name);
+        });
+
+        clearPersons();
+        $('.persons-buttons').after('<a id="person'+personCounter+'" data-index="'+personCounter+'" href="#" class="btn btn-primary btnEditPerson">Person '+personCounter+'</a>');
+        $('.persons-top').after(ele);
+        $(".aperson").hide();
+        personCounter++;
+        
+        //populatePersons();
+    });
+
+    $('body').on('click','.btnEditPerson',function(e) {
+        //console.log('editPerson');
+        //$(".aperson").hide();
+        
+        var index = $(this).attr('data-index');
+        console.log('INDEX', index);
+        if($(".aperson[data-index='"+index+"']").is(':visible')){
+            console.log('VISIBLE')
+            $(".aperson[data-index='"+index+"']").hide();
+        } else {
+            $(".aperson").hide();
+            $(".aperson[data-index='"+index+"']").show();
+            //
+        }
+            //if($(".aperson").eq(eq).not(':visible')){
+        //    console.log('visible');
+        //    //$(".aperson").eq(eq)
+        //    $(".aperson").eq(eq).show();
+        //}
+        //$(".aperson").eq(eq).siblings('.aperson').hide();
+        //.toggle();
+        //e.preventDefault();
+    });
+
+    //$('.collapse').on('show.bs.collapse', function () {
+    //    $('.collapse.in').each(function(){
+    //        $(this).collapse('hide');
+    //    });
+    //});
 
 });
 
