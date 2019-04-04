@@ -1,164 +1,42 @@
+var currentStep = 1;
+
 $(function() {
 
-    // Form data model
-    var data = {
-        step1: {
-            badge_number: {
-                required: false,
-                value: ''
-            },
-            decline: {
-                required: false,
-                value: false
-            },
-            name: {
-                required: true,
-                value: ''
-            },
-            email: {
-                required: true,
-                value: ''
-            },
-            phone: {
-                required: false,
-                value: ''
-            },
-            company: {
-                required: false,
-                value: ''
-            },
-            department: {
-                required: false,
-                value: ''
-            },
-            call_taker_name: {
-                required: false,
-                value: ''
-            },
-            call_taker_phone: {
-                required: false,
-                value: ''
-            },
-            call_taker_company: {
-                required: false,
-                value: ''
-            },
-            call_taker_department: {
-                required: false,
-                value: ''
-            }
-        },
-        step2: {
-            description: {
-                required: true,
-                value: ''
-            },
-            location: {
-                required: true,
-                value: ''
-            },
-            date: {
-                required: true,
-                value: ''
-            },
-            time: {
-                required: true,
-                value: ''
-            },
-            what: {
-                required: false,
-                value: ''
-            },
-            injuries: {
-                required: true,
-                value: ''
-            },
-            property_damage: {
-                required: true,
-                value: ''
-            },
-            airlines: {
-                required: true,
-                value: ''
-            },
-            ssi: {
-                required: false,
-                value: ''
-            }
-        },
-        step3: {
-            persons: []
-        },
-        step4: {
-            factors: {
-                required: true,
-                value: ''
-            },
-            human_error: {
-                required: true,
-                value: ''
-            },
-            mechanical_failure: {
-                required: true,
-                value: ''
-            },
-            environment: {
-                required: true,
-                value: ''
-            },
-            weather_conditions: {
-                required: true,
-                clear: false,
-                dust: false,
-                snow: false,
-                clouds: false,
-                rain: false,
-                fog: false,
-                windy: false,
-                unkown: false
-            },
-            pavement_conditions: {
-                required: true,
-                dry: false,
-                ice: false,
-                water: false,
-                snow: false,
-                other: false,
-                unkown: false
-            },
-            pavement_condition: {
-                raquired: true,
-                value: ''
-            },
-            other_relavent_info: {
-                required: false,
-                value: ''
-            }
-        },
-        step5: {
-            notes: [],
-            files: []
-        }
-    }
-
     // the current step by default
-    var currentStep = 1;
+    var retrievedObject = false;
 
     // init
     var t = setTimeout(function() {
         // more state work todo...
 
         // Setup State by clicking once
+        $('.btnSubmit').hide();
         $('.nav-tabs > .active').find('a').trigger('click');
+        // Retrieve the object from storage
+
+        retrievedObject = localStorage.getItem('topiaryFormData');
+        //console.log('retrievedObject', retrievedObject);
+        if(retrievedObject) {
+            retrievedObject = JSON.parse(retrievedObject);
+            console.log('There is saved data', retrievedObject);
+        }
+        //console.log('retrievedObject: ', JSON.parse(retrievedObject));
+
     }, 900);
 
     // Overlay fadeout
     var t = setTimeout(function() {
         $('.overlay').fadeOut();
+        if(retrievedObject) {
+            // set the data...
+            $("form[name='main-form']").deserialize(retrievedObject);
+            
+            // set current step
+            $('.nav-tabs > li').eq(currentStep-1).find('a').trigger('click');
+            
+        }
+        
     }, 1000);
-
-    
-
 
     // App functions
     declineDisable = function(toggle) {
@@ -168,28 +46,6 @@ $(function() {
         $("#company").prop('disabled', toggle);
         $("#department").prop('disabled', toggle);
     };
-
-    validate = function(step) {
-        console.log('validate step', step);
-        //console.log('data',Object.size(data));
-
-        /*for(var i=0; i < Object.size(data); i++) {
-            if(step == i+1) {
-                console.log(i+1);
-                console.log(data[i]);
-            }
-        }*/
-
-        //Object.entries(data).forEach(entry => {
-            //console.log(entry)
-        //    let key = entry[0];
-        //    let value = entry[1];
-            //console.log('',data[value]);
-            //use key and value here
-        //});
-
-        return true;
-    }
 
     // EVENTS
 
@@ -202,17 +58,8 @@ $(function() {
         }
     });
 
-    // Weather Checkboxes
-    
-
-    // Submission
-    //var validator = $("#main-form").validate();
     var validator = $("form[name='main-form']").validate({
-        // Specify validation rules
         rules: {
-          // The key name on the left side is the name attribute
-          // of an input field. Validation rules are defined
-          // on the right side
           name: "required",
           email: "required",
           description: "required",
@@ -230,15 +77,10 @@ $(function() {
           'pavement_conditions[]':  { required: true },
           pavement_condition_description: "required"
         },
-        // Specify validation error messages
-        messages: {
-            badge_number: "Please enter your firstname"
-        },
-        // Make sure the form is submitted to the destination defined
-        // in the "action" attribute of the form when valid
         submitHandler: function(form) {
-          
+    
             form.submit();
+
         }
     });
 
@@ -249,9 +91,10 @@ $(function() {
         console.log('Navigating to', step);
 
         var valid = validator.form();
-        console.log('FORM ALPHA',valid);
+        //console.log('FORM ALPHA',valid);
         
-        if(valid) {
+        // validate if navigating forward only
+        if(valid || step < currentStep) {
             //console.log('valid');
             currentStep = step;
             if(currentStep == 1) {
@@ -292,6 +135,23 @@ $(function() {
         $('.nav-tabs > .active').prev('li').find('a').trigger('click');
     });
 
+    $('.btnSave').click(function(e) {
+        //var testObject = { 'one': 1, 'two': 2, 'three': 3 };
+
+        //var formData = new FormData($("form[name='main-form']"));
+        //var formData = $("form[name='main-form']").serializeArray().reduce(function(obj, item) {
+        //    obj[item.name] = item.value;
+        //    return obj;
+        //}, {});
+        var formData = $("form[name='main-form']").serialize();
+        formData += "&step=" + currentStep;
+        //console.log('FORM DATA', formData);
+        localStorage.setItem('topiaryFormData', JSON.stringify(formData));
+
+        alert('You data has been saved for later.');
+        e.preventDefault();
+    });
+
 });
 
 
@@ -316,5 +176,45 @@ var confirmOnPageExit = function(e) {
     return message;
 };
 
+
 //window.onbeforeunload = confirmOnPageExit;
 window.onbeforeunload = null; // comment out to turn on
+
+
+jQuery.fn.deserialize = function (data) {
+    var f = this,
+        map = {},
+        find = function (selector) { return f.is("form") ? f.find(selector) : f.filter(selector); };
+    //Get map of values
+    jQuery.each(data.split("&"), function () {
+        var nv = this.split("="),
+            n = decodeURIComponent(nv[0]),
+            v = nv.length > 1 ? decodeURIComponent(nv[1]) : null;
+        if (!(n in map)) {
+            map[n] = [];
+        }
+        map[n].push(v);
+    })
+
+    if(map.step) {
+        console.log('Loaded step', map.step);
+        currentStep = parseInt(map.step);
+    }
+    //Set values for all form elements in the data
+    jQuery.each(map, function (n, v) {
+        find("[name='" + n + "']").val(v).change();
+
+    })
+    //Clear all form elements not in form data
+    find("input:text,select,textarea").each(function () {
+        if (!(jQuery(this).attr("name") in map)) {
+            jQuery(this).val("");
+        }
+    })
+    find("input:checkbox:checked,input:radio:checked").each(function () {
+        if (!(jQuery(this).attr("name") in map)) {
+            this.checked = false;
+        }
+    })
+    return this;
+};

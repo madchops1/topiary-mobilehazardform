@@ -1,5 +1,5 @@
 body {
-    margin-bottom: 54px;
+    margin-bottom: 80px;
     background: #333;
 }
 
@@ -69,8 +69,9 @@ footer {
     position: fixed;
     bottom: 0px;
     background: #337ab7;
-    padding: 10px;
+    padding: 10px 10px 0 10px;
     width: 100%;
+    margin: 0px;
     max-width: 768px;
     /*margin: 0px -10px;*/
     -webkit-font-smoothing: none; /* Obvious */
@@ -90,6 +91,7 @@ footer {
     float: right;
     text-shadow: none;
     width: 20%;
+    margin-left: 10px;
 }
 
 .btnPrevious {
